@@ -1,32 +1,166 @@
-extends includes/layout.pug
-
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
-
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
-        
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
-
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
-
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
-
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux查看硬件信息 | 𝓛𝓲𝓾𝓨𝓾𝔂𝓪𝓷'𝓼 𝓑𝓵𝓸𝓰</title><meta name="author" content="𝓛𝓲𝓾𝓨𝓾𝔂𝓪𝓷"><meta name="copyright" content="𝓛𝓲𝓾𝓨𝓾𝔂𝓪𝓷"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Linux查看硬件信息系统12345678# uname -a               # 查看内核&#x2F;操作系统&#x2F;CPU信息# head -n 1 &#x2F;etc&#x2F;issue   # 查看操作系统版本# cat &#x2F;proc&#x2F;cpuinfo      # 查看CPU信息# hostname               # 查看计算机名# lspci -tv              # 列出所有PCI设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux查看硬件信息">
+<meta property="og:url" content="http://example.com/2022/01/03/Linux%E6%9F%A5%E7%9C%8B%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/index.html">
+<meta property="og:site_name" content="𝓛𝓲𝓾𝓨𝓾𝔂𝓪𝓷&#39;𝓼 𝓑𝓵𝓸𝓰">
+<meta property="og:description" content="Linux查看硬件信息系统12345678# uname -a               # 查看内核&#x2F;操作系统&#x2F;CPU信息# head -n 1 &#x2F;etc&#x2F;issue   # 查看操作系统版本# cat &#x2F;proc&#x2F;cpuinfo      # 查看CPU信息# hostname               # 查看计算机名# lspci -tv              # 列出所有PCI设">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2022-01-03T03:41:39.000Z">
+<meta property="article:modified_time" content="2022-01-01T12:39:00.000Z">
+<meta property="article:author" content="𝓛𝓲𝓾𝓨𝓾𝔂𝓪𝓷">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/01/03/Linux%E6%9F%A5%E7%9C%8B%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux查看硬件信息',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-01 20:39:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
       
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="𝓛𝓲𝓾𝓨𝓾𝔂𝓪𝓷'𝓼 𝓑𝓵𝓸𝓰"><span class="site-name">𝓛𝓲𝓾𝓨𝓾𝔂𝓪𝓷'𝓼 𝓑𝓵𝓸𝓰</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux查看硬件信息</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-01-03T03:41:39.000Z" title="发表于 2022-01-03 11:41:39">2022-01-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-01-01T12:39:00.000Z" title="更新于 2022-01-01 20:39:00">2022-01-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux查看硬件信息"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Linux查看硬件信息"><a href="#Linux查看硬件信息" class="headerlink" title="Linux查看硬件信息"></a>Linux查看硬件信息</h2><h3 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># uname -a               # 查看内核/操作系统/CPU信息</span></span><br><span class="line"><span class="comment"># head -n 1 /etc/issue   # 查看操作系统版本</span></span><br><span class="line"><span class="comment"># cat /proc/cpuinfo      # 查看CPU信息</span></span><br><span class="line"><span class="comment"># hostname               # 查看计算机名</span></span><br><span class="line"><span class="comment"># lspci -tv              # 列出所有PCI设备（yum install pciutils）</span></span><br><span class="line"><span class="comment"># lsusb -tv              # 列出所有USB设备</span></span><br><span class="line"><span class="comment"># lsmod                  # 列出加载的内核模块</span></span><br><span class="line"><span class="comment"># env                    # 查看环境变量</span></span><br></pre></td></tr></table></figure>
+<h3 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># free -m                # 查看内存使用量和交换区使用量</span></span><br><span class="line"><span class="comment"># df -h                  # 查看各分区使用情况</span></span><br><span class="line"><span class="comment"># du -sh &lt;目录名&gt;        # 查看指定目录的大小</span></span><br><span class="line"><span class="comment"># grep MemTotal /proc/meminfo   # 查看内存总量</span></span><br><span class="line"><span class="comment"># grep MemFree /proc/meminfo    # 查看空闲内存量</span></span><br><span class="line"><span class="comment"># uptime                 # 查看系统运行时间、用户数、负载</span></span><br><span class="line"><span class="comment"># cat /proc/loadavg      # 查看系统负载</span></span><br></pre></td></tr></table></figure>
+<h3 id="磁盘和分区"><a href="#磁盘和分区" class="headerlink" title="磁盘和分区"></a>磁盘和分区</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># mount | column -t      # 查看挂接的分区状态</span></span><br><span class="line"><span class="comment"># fdisk -l               # 查看所有分区</span></span><br><span class="line"><span class="comment"># swapon -s              # 查看所有交换分区</span></span><br><span class="line"><span class="comment"># hdparm -i /dev/hda     # 查看磁盘参数(仅适用于IDE设备)</span></span><br><span class="line"><span class="comment"># dmesg | grep IDE       # 查看启动时IDE设备检测状况</span></span><br></pre></td></tr></table></figure>
+<h3 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ifconfig               # 查看所有网络接口的属性</span></span><br><span class="line"><span class="comment"># iptables -L            # 查看防火墙设置</span></span><br><span class="line"><span class="comment"># route -n               # 查看路由表</span></span><br><span class="line"><span class="comment"># netstat -lntp          # 查看所有监听端口</span></span><br><span class="line"><span class="comment"># netstat -antp          # 查看所有已经建立的连接</span></span><br><span class="line"><span class="comment"># netstat -s             # 查看网络统计信息</span></span><br></pre></td></tr></table></figure>
+<h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps -ef                 # 查看所有进程</span></span><br><span class="line"><span class="comment"># top                    # 实时显示进程状态</span></span><br></pre></td></tr></table></figure>
+<h3 id="用户"><a href="#用户" class="headerlink" title="用户"></a>用户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># w                      # 查看活动用户</span></span><br><span class="line"><span class="comment"># id &lt;用户名&gt;            # 查看指定用户信息</span></span><br><span class="line"><span class="comment"># last                   # 查看用户登录日志</span></span><br><span class="line"><span class="comment"># cut -d: -f1 /etc/passwd   # 查看系统所有用户</span></span><br><span class="line"><span class="comment"># cut -d: -f1 /etc/group    # 查看系统所有组</span></span><br><span class="line"><span class="comment"># crontab -l             # 查看当前用户的计划任务</span></span><br></pre></td></tr></table></figure>
+<h3 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># chkconfig --list              # 列出所有系统服务</span></span><br><span class="line"><span class="comment"># chkconfig --list | grep on    # 列出所有启动的系统服务</span></span><br></pre></td></tr></table></figure>
+<h3 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># rpm -qa    # 查看所有安装的软件包</span></span><br></pre></td></tr></table></figure>
+<h3 id="查看网卡型号"><a href="#查看网卡型号" class="headerlink" title="查看网卡型号"></a>查看网卡型号</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lspci | grep Ethernet</span></span><br></pre></td></tr></table></figure>
+<h3 id="查看内存和cpu最直接最常用的命令"><a href="#查看内存和cpu最直接最常用的命令" class="headerlink" title="查看内存和cpu最直接最常用的命令"></a>查看内存和cpu最直接最常用的命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># free</span></span><br><span class="line"><span class="comment"># cat /proc/cpuinfo</span></span><br></pre></td></tr></table></figure>
+<h3 id="查看硬盘信息（查看硬盘型号和硬盘序列号）"><a href="#查看硬盘信息（查看硬盘型号和硬盘序列号）" class="headerlink" title="查看硬盘信息（查看硬盘型号和硬盘序列号）"></a>查看硬盘信息（查看硬盘型号和硬盘序列号）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># df -h</span></span><br></pre></td></tr></table></figure></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">𝓛𝓲𝓾𝓨𝓾𝔂𝓪𝓷</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/01/03/Linux%E6%9F%A5%E7%9C%8B%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/">http://example.com/2022/01/03/Linux%E6%9F%A5%E7%9C%8B%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">𝓛𝓲𝓾𝓨𝓾𝔂𝓪𝓷'𝓼 𝓑𝓵𝓸𝓰</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/03/Oracle%20Cloud%E5%B0%8F%E9%B8%A1%E8%AE%BE%E7%BD%AE/" title="Oracle 云免费套餐包含哪些内容"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Oracle 云免费套餐包含哪些内容</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/03/Oracle%E5%85%8D%E8%B4%B9%E6%9C%8D%E5%8A%A1/" title="Oracle 云免费套餐包含哪些内容"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Oracle 云免费套餐包含哪些内容</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/01/03/%E8%AE%BE%E7%BD%AELinux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E4%B8%BA%E5%8C%97%E4%BA%AC%E6%97%B6%E9%97%B4/" title="设置Linux系统时间为北京时间"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-03</div><div class="title">设置Linux系统时间为北京时间</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">𝓛𝓲𝓾𝓨𝓾𝔂𝓪𝓷</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E6%9F%A5%E7%9C%8B%E7%A1%AC%E4%BB%B6%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">Linux查看硬件信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.</span> <span class="toc-text">系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%84%E6%BA%90"><span class="toc-number">1.2.</span> <span class="toc-text">资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E5%92%8C%E5%88%86%E5%8C%BA"><span class="toc-number">1.3.</span> <span class="toc-text">磁盘和分区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-number">1.4.</span> <span class="toc-text">网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.5.</span> <span class="toc-text">进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7"><span class="toc-number">1.6.</span> <span class="toc-text">用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.7.</span> <span class="toc-text">服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.8.</span> <span class="toc-text">程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%BD%91%E5%8D%A1%E5%9E%8B%E5%8F%B7"><span class="toc-number">1.9.</span> <span class="toc-text">查看网卡型号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E5%92%8Ccpu%E6%9C%80%E7%9B%B4%E6%8E%A5%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="toc-number">1.10.</span> <span class="toc-text">查看内存和cpu最直接最常用的命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E7%A1%AC%E7%9B%98%E4%BF%A1%E6%81%AF%EF%BC%88%E6%9F%A5%E7%9C%8B%E7%A1%AC%E7%9B%98%E5%9E%8B%E5%8F%B7%E5%92%8C%E7%A1%AC%E7%9B%98%E5%BA%8F%E5%88%97%E5%8F%B7%EF%BC%89"><span class="toc-number">1.11.</span> <span class="toc-text">查看硬盘信息（查看硬盘型号和硬盘序列号）</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><div class="content"><a class="title" href="/2024/09/19/mtproxy+tls/" title="mtproxy+tls">mtproxy+tls</a><time datetime="2024-09-19T02:00:00.000Z" title="发表于 2024-09-19 10:00:00">2024-09-19</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2022/01/03/hello-world/" title="Hello World">Hello World</a><time datetime="2022-01-03T03:41:39.000Z" title="发表于 2022-01-03 11:41:39">2022-01-03</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2022/01/03/Docker%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4/" title="Docker命令相关">Docker命令相关</a><time datetime="2022-01-03T03:41:39.000Z" title="发表于 2022-01-03 11:41:39">2022-01-03</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2022/01/03/Hexo%E6%96%87%E7%AB%A0%E4%B8%AD%E5%A6%82%E4%BD%95%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" title="Hexo文章中如何插入图片">Hexo文章中如何插入图片</a><time datetime="2022-01-03T03:41:39.000Z" title="发表于 2022-01-03 11:41:39">2022-01-03</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/2022/01/03/Oracle%20Cloud%E5%B0%8F%E9%B8%A1%E8%AE%BE%E7%BD%AE/" title="Oracle 云免费套餐包含哪些内容">Oracle 云免费套餐包含哪些内容</a><time datetime="2022-01-03T03:41:39.000Z" title="发表于 2022-01-03 11:41:39">2022-01-03</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By 𝓛𝓲𝓾𝓨𝓾𝔂𝓪𝓷</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
