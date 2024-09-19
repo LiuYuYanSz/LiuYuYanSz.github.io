@@ -5,8 +5,8 @@
   
   <entry>
     <title>mtproxy+tls</title>
-    <link href="/2024/09/19/mtproxy+tls%20/"/>
-    <url>/2024/09/19/mtproxy+tls%20/</url>
+    <link href="/2024/09/19/%E4%BB%A3%E7%90%86%20/"/>
+    <url>/2024/09/19/%E4%BB%A3%E7%90%86%20/</url>
     
     <content type="html"><![CDATA[<p>更新系统：<br>yum update -y  #CentOS系统命令<br>apt update -y  #Debian系统命令<br>———ubuntu系统—–<br>启动bbr<br>sudo bash -c ‘echo “net.core.default_qdisc&#x3D;fq” &gt;&gt; &#x2F;etc&#x2F;sysctl.conf’<br>sudo bash -c ‘echo “net.ipv4.tcp_congestion_control&#x3D;bbr” &gt;&gt; &#x2F;etc&#x2F;sysctl.conf’<br>sysctl -p</p><p>查看bbr是否开启成功<br>lsmod | grep bbr</p><p>开放端口<br>开放所有端口<br>iptables -P INPUT ACCEPT<br>iptables -P FORWARD ACCEPT<br>iptables -P OUTPUT ACCEPT<br>iptables -F<br>关闭防火墙<br>apt-get purge netfilter-persistent<br>reboot<br>————–centos系统————<br>关闭防火墙<br>systemctl stop firewalld.service &amp;&amp; systemctl disable firewalld.service<br>开启bbr<br>echo “net.core.default_qdisc&#x3D;fq” &gt;&gt; &#x2F;etc&#x2F;sysctl.conf<br>echo “net.ipv4.tcp_congestion_control&#x3D;bbr” &gt;&gt; &#x2F;etc&#x2F;sysctl.conf<br>sysctl -p<br>sysctl -n net.ipv4.tcp_congestion_control<br>查看bbr是否开启成功<br>lsmod | grep bbr<br>—————搭建————–</p><p>一键脚本<br>使用脚本前请确认curl已安装</p><p>bash &lt;(curl -sSL “<a href="https://raw.githubusercontent.com/xb0or/nginx-mtproxy/main/mtp.sh">https://raw.githubusercontent.com/xb0or/nginx-mtproxy/main/mtp.sh</a>“)</p><p>根据提示输入即可完成安装。</p><p>默认的认证页面：</p><p><a href="http://ip/add.php">http://ip/add.php</a></p><p>浏览器访问该页面，会自动提交当前IP地址。</p><p>只有认证过的IP地址才会被代理服务器防火墙放行。</p><p>已知问题：如果使用默认端口，使用 docker log 打印出来的代理地址端口为8443，实际上却是443，需要注意。</p><p>使用方法：</p><p>先点击链接进行认证，再连接 MTProxy 代理。</p><p>如果未验证直接连接代理，会提示代理不可用。</p><p>其他命令<br>Stop service &#x2F; 停止服务</p><p>docker stop nginx-mtproxy<br>Start service &#x2F; 启动服务</p><p>docker start nginx-mtproxy<br>Restart service &#x2F; 重启服务</p><p>docker restart nginx-mtproxy<br>Delete service &#x2F; 删除服务</p><p>docker rm nginx-mtproxy<br>Auto Run &#x2F; 开机自启</p><p>docker update –restart&#x3D;always nginx-mtproxy</p>]]></content>
     
